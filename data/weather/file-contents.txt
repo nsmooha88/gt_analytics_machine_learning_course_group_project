@@ -1,0 +1,6 @@
+filename                    content
+
+climdiv-tmaxst-v1.0         state level max temperature
+climdiv-tminst-v1.0         state level min temperature
+climdiv-tminst-v1.0         state level precipitation    
+      
