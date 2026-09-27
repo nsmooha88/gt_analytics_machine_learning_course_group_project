@@ -1,0 +1,4780 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage[T1]{fontenc}
+\usepackage{pslatex}
+\usepackage{lastpage}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{{Page }\thepage{ of} \pageref{LastPage}}
+\rfoot{}
+\renewcommand{\headrulewidth}{0 pt}
+\setlength{\mathindent}{15mm}
+\end_preamble
+\use_default_options true
+\begin_modules
+enumitem
+theorems-ams-bytype
+theorems-ams-extended-bytype
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\headheight 0.5in
+\headsep 0.5in
+\footskip 0.5in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 1
+\math_indentation default
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Forecasting Annual U.S.
+ Honey Bee Colony Numbers Using Time Series Data
+\end_layout
+
+\begin_layout Author
+Nathan Smooha (903644479), Elisabeth Gutierrez-Zaheer (903620049), Vincent
+ Amedekah (903743705)
+\end_layout
+
+\begin_layout Date
+December 6, 2022
+\end_layout
+
+\begin_layout Section
+Problem Statement
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+North America is home to nearly 4,500 species of bees [1].
+ Most species are solitary, but there are 49 known species of primitive
+ eusocial bumble bees in the United States.
+ 41 of these species are also found in Canada, and an additional 11 species
+ are found in Mexico.
+ In 1622, the highly eusocial western honey bee (“Apis mellifera”) was introduce
+d to North America from Europe and Africa [2], and it is the only species
+ of honey bee in North America.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Honey bees and other plant pollinators are vital to the health of agricultural
+ and plant ecosystems.
+ In fact, honey bees pollinate many of the fruits, vegetables, and nuts
+ the human population grows and consumes.
+ 75% to 80% of the world’s crops depend on pollinators like the honey bee
+ [3], and the need for honey bee pollination services has increased as the
+ demand for insect-pollinated food has risen.
+ Unfortunately, honey bees in the United States have a high mortality rate.
+ “…over the last decade, the U.S.
+ annual honey bee colony mortality rate has fluctuated between 30-45%, with
+ some beekeepers losing half or more of their colonies every year” [4].
+ Nonetheless, colony loss rates remain separate from honey bee population
+ decline.
+ The honey bee population (i.e., the overall number of colonies) has remained
+ steady over the years, but the beekeeping and agricultural industry do
+ face challenges [5].
+ There is still notable concern for the overall health of honey bee colonies,
+ which has led to the establishment of nonprofit organizations, such as
+ “The Bee Informed Partnership”, to help improve the health and long-term
+ sustainability of honey bees.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+In the United States, honey bees have such a high mortality rate due to
+ a complex suite of factors.
+ “Several critical factors threaten honey bees including poor nutrition
+ due to land use change, pesticide exposure, and introduced pests and diseases”
+ [4].
+ Varroa mites, which were introduced into the United States in the 1980s,
+ are one of the major external parasitic threats that continue to negatively
+ impact US honey bee colonies.
+ Elevated pathogens and pesticides also have a substantial influence on
+ honey bees, with a wide array of pesticides being detected in wax and pollen
+ [4].
+ These external threats then make honey bee colonies more susceptible to
+ serious diseases, like “Colony Collapse Disorder” (CCD), which is a phenomenon
+ that occurs when thriving colonies empty within a few weeks because many
+ worker bees disappear [6].
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Moreover, climate change continues to have intensifying weight on honey
+ bee mortality, especially due to extreme temperatures.
+ To elaborate, honey bees are active when it is 60.8 degrees Fahrenheit,
+ but they stop flying when the temperature falls below 50 degrees.
+ If the temperature drops below 28 degrees, then they die within one hour
+ [7].
+ In a survey performed from 2014 to 2019, the mortality rate for bees was
+ 53.5% during the winter [8].
+ While honey bees can survive in both high and low temperatures, they will
+ still die if there are prolonged instances of substantially high or low
+ temperatures because they suffer severe water loss and weakened muscles
+ to fly [7].
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Finally, air quality can damage honey bee colonies.
+ A 2020 study performed in India demonstrated that the number of bees visiting
+ flowers reduced significantly in areas with elevated levels of pollution,
+ while the opposite was true in areas where pollution was lower [9].
+ The study identified high and low pollution areas by investigating the
+ levels of particulate matter (PM), consisting of sulfate, nitrates, ammonia,
+ sodium chloride, black carbon, mineral dust, and water, in the air [9].
+ Note that elevated levels of PM2.5 means that the PM is small enough to
+ enter the systems of humans and animals [10].
+ Other environmental exposures such as ozone, nitrogen, and sulfur dioxide
+ can also have serious outcomes on honey bee health, and elevated levels
+ of pollutants can cause bees to die.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Consequently, such highly volatile dynamics in honey bee mortality can lead
+ to unpredictable outcomes for our country's ecosystems and agricultural
+ industry.
+ Colony loss directly affects the honey bee population, and a potential
+ decrease in the number of honey bee colonies could negatively impact crop
+ production yields.
+ While beekeepers can help to create more colonies, replacing colonies still
+ comes at a great cost, and it should not be underappreciated [4].
+ Over the last 20 years, annual loss rates remain high, so beekeepers are
+ consistently under pressure to offset these losses by creating new colonies
+ [11].
+ Instead of reactionary decision making based on constant fluctuations in
+ the honey bee population, it could help beekeepers, farmers, etc.
+ to have insight into how many colonies they can expect to have in the future.
+ This would enable the appropriate policy makers to improve assessments
+ of local and regional habitat suitability and ultimately make more informed
+ decisions.
+ If these groups had advanced knowledge of substantial colony loss in the
+ future, then perhaps they could take steps in the present to mitigate some
+ of the problems through targeted initiatives.
+ Therefore, the goal of this project is to utilize past data to help build
+ a machine learning model that forecasts annual honey bee colony numbers
+ for different states in the U.S.
+\end_layout
+
+\begin_layout Section
+Literature Survey
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+As explained, the topic of honey bee population loss is an important one.
+ Most of the research being done is focused on analyzing data collected
+ through surveys.
+ The “Bee Informed Partnership” created the “Colony Loss and Management
+ Survey,” which monitors managed honey bee colony loss rates and identifies
+ risk factors and protective measures [12].
+ Furthermore, the “National Honey Bee Survey” is a comprehensive examination
+ of colony health throughout the United States, and it helps document honey
+ bee diseases, pests, and pathogens [13].
+ The data collected through these surveys is valuable to both beekeepers
+ and researchers.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+For instance, a review published in EcoHealth [14] utilized data collected
+ through surveys from individual beekeepers to study the drivers of decline
+ in bee colonies.
+ The study was conducted by identifying socioeconomic, political, and environmen
+tal factors affecting the bee industry, and various models were run to analyze
+ bee colony numbers.
+ It was found that how the bees are managed, along with pathogens and pesticides
+, were significant contributors to the decline of the bee colonies.
+ The approach used in the study can be improved by adding more datasets
+ and evaluating data across the entire United States to get a more extensive
+ view of the factors impacting honey bee colonies, such as weather and air
+ quality, which our project intends to do.
+ Most importantly, our primary goal is to create a machine learning model
+ to forecast future honey bee colony numbers.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+However, there are other studies that have taken a more theoretical approach.
+ Chen et al.
+ [15] formulated theoretical mathematical equations to study the impact
+ on the number of honeybee colonies, and they considered several factors
+ as variables, such as diseases, pesticides, and food availability.
+ Though, the equations were only based on theory, and they were not validated
+ to for practical use.
+ The authors did state that the use of machine learning to validate the
+ theoretical models was necessary since their approach lacked the use of
+ real data.
+ Our project will use machine learning modeling to validate real historical
+ time series data, and we’ll consider various factors when building our
+ machine learning models.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Regardless, there are still only a few studies related to forecasting honey
+ bee activity or colony numbers.
+ Ngo et al.
+ [16] used temporal convolutional neural networks to forecast the population
+ daily loss rate of honey bee colonies, and they determined warning levels
+ based on the predictions.
+ Yet, their project was narrowly focused on individual honey bee colonies
+ since they collected experimental data from a honey bee farm located in
+ Taiwan to help construct their algorithm.
+ Moreover, Rumkee et al.
+ [17] simulated the effects of pesticides on different honey bee life stages
+ using the BEEHAVE model.
+ “The BEEHAVE model simulates the development of a honey bee colony and
+ its foraging of nectar and pollen in different landscapes” [18].
+ Matthias et al.
+ [19] was another study that utilized the BEEHAVE system.
+ The authors found the increase in failure of bee colonies were attributed
+ to pathogens, forage availability, and potentially pesticides.
+ To sum up, all these initiatives focused on how individual honey bee colonies
+ responded to external stressors, specifically pesticide exposure and pathogens.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Our study, on the other hand, will have a broader focus than the research
+ projects outlined in the previous paragraph since we will try to predict
+ the annual honey bee population for individual states, as well as the aggregate
+d numbers of these states.
+ In addition, we will try to consider several factors that are correlated
+ with increased honey bee mortality, including pesticides, diseases, pests,
+ temperature, precipitation, and air quality.
+ The aim of this project is to account for the factors that have a potential
+ impact on honey bees to make more informed predictions.
+ Finally, we will experiment with different machine learning models to see
+ which approach produces the best forecasts of future honey bee colony numbers.
+\end_layout
+
+\begin_layout Section
+Data Sources
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+For our project, we produced two separate data sources to experiment with
+ different kinds of methodologies because we wanted to examine which ones
+ produced the best predictive results.
+\end_layout
+
+\begin_layout Subsection
+Dataset A
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+To easily distinguish between the two datasets we utilized, we referred
+ to the dataset described in this subsection as “Dataset A.” The primary
+ segment of the data was retrieved from the National Agricultural Statistics
+ Service (NASS), which is part of the United States Department of Agriculture
+ (USDA) [20].
+ It contained annual honey bee colony numbers, which we treated as our response
+ variable, for various states from 1987 to 2021.
+ Important to note, this was the most complete and expansive dataset on
+ honey bee populations that could be obtained from the NASS.
+ The NASS creates its datasets through a wide-ranging Census conducted every
+ 5 years, or through more constrained quarterly or annual surveys.
+ Our group decided to focus on the data collected from the surveys.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Unfortunately, due to the limitations of these surveys, there were 11 states
+ that did not have observations for every year.
+ Instead, some of these states had their honey bee numbers grouped together
+ in a separate series labelled 
+\begin_inset Quotes eld
+\end_inset
+
+other states.
+\begin_inset Quotes erd
+\end_inset
+
+ Since the set of states that made up 
+\begin_inset Quotes eld
+\end_inset
+
+other states
+\begin_inset Quotes erd
+\end_inset
+
+ were widely dissimlar and ever changing, we decided to remove this series
+ from the dataset entirely.
+ Furthermore, any states that did not have continuous observations for the
+ entire time horizon were also dropped.
+ Therefore, the final version of Dataset A was composed of separate time
+ series of annual honey bee colony numbers for 39 states from 1987 to 2021,
+ and we assumed these 39 states were a fair representation of the United
+ States as a whole.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+With this setup, Dataset A was often treated as a hierarchal time series.
+ The summation of the honey bee population in a given year across the 39
+ states represented the “top” of the hierarchy, or the most aggregate level
+ of the data.
+ So, the 
+\begin_inset Formula $t$
+\end_inset
+
+-th observation of the aggregated time series was denoted by 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ for 
+\begin_inset Formula $t=1987,\ldots,2021$
+\end_inset
+
+.
+ Obviously, this top-level series was also disaggregated into the 39 separate
+ time series, where 
+\begin_inset Formula $y_{j,t}$
+\end_inset
+
+ denoted the 
+\begin_inset Formula $t$
+\end_inset
+
+-th observation corresponding to the 
+\begin_inset Formula $j$
+\end_inset
+
+-th series for 
+\begin_inset Formula $j=1,\ldots,39$
+\end_inset
+
+.
+ For any time 
+\begin_inset Formula $t$
+\end_inset
+
+, the observations for all the 
+\begin_inset Formula $j$
+\end_inset
+
+ time series summed to the aggregated time series, i.e., 
+\begin_inset Formula 
+\[
+y_{t}=y_{1,t}+\ldots+y_{39,t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Moreover, we generated annual data related to climate and air quality for
+ the 39 states.
+ These features were frequently combined with the annual honey bee colony
+ numbers to create multivarite time series for each state and help improve
+ the predictive power of the models employing Dataset A.
+ First, the climate data was retrieved from the National Centers for Environment
+al Information (NCEI) [21].
+ The dataset consisted of monthly weather measurements at the state level
+ from 1895 to the present.
+ For our project, the maximum temperature, minimum temperature, and precipitatio
+n measures were retained.
+ During the preprocessing, the monthly data was rolled up to the annual
+ level for each state by taking the monthly maximum and minimum temperatures,
+ respectively, over the 12-month readings, while the annual precipitation
+ was calculated by adding the 12-month readings.
+ Next, the air quality data was obtained from the United States Environmental
+ Protection Agency (EPA) [22].
+ The annual summary data per county was extracted for the years of 1987
+ to 2021, and the data was preprocessed to merge all the various data files
+ sets into one dataset.
+ For each feature column on air quality, the data was grouped into states
+ and counties, and the aggregate mean for the 39 states was calculated using
+ the appropriate county values.
+\end_layout
+
+\begin_layout Subsection
+Dataset B
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Moving on, we referred to the dataset described in this subsection as “Dataset
+ B.” This dataset contained annual honey bee data for 45 states and “other
+ states” (an aggregation of data from Alaska, Delaware, Nevada, New Hampshire,
+ and Rhode Island) from 2015 to 2021.
+ Similar to the other dataset, much of the data in this dataset was obtained
+ from the NASS quarterly survey data [20].
+ Though, Dataset B did not only include annual data on honey bee populations.
+ It also contained data on various features that typically impact honey
+ bee mortality, such as the percentage of honey bee colonies affected by
+ renovation, diseases, pests, pesticides, and “other causes”.
+ The quarterly data for each state was aggregated to the annual level by
+ taking the average of the four quarters for each feature.
+ We also obtained annual data on the percentage of beekeepers and honey
+ bee colonies exclusive to each state, along with a weighted average of
+ total colony loss, from the “Bee Informed Partnership” [23].
+ All these additional features were been combined with the annual data on
+ air quality and climate to produce a large set of independent variables.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Now, the main goal of our project was to generate a strong predictive model
+ to forecast annual honey bee colony numbers in the future.
+ To accomplish this objective, we wanted to utilize both datasets to generate
+ and test several models, and then select the model with the best predictive
+ performance.
+ Yet, in order to properly compare models built using either of the two
+ datasets, the set of states in both needed to match.
+ So, we eliminated data corresponding to 
+\begin_inset Quotes eld
+\end_inset
+
+other states
+\begin_inset Quotes erd
+\end_inset
+
+ and the 6 additional states found in Dataset B (i.e., Connecticut, Maryland,
+ Massachusetts, New Mexico, Oklahoma, and South Carolina).
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Finally, the structure of Dataset B was more in line with longitudinal or
+ panel data.
+ As mentioned, it not only had data for our response variable, but it also
+ consisted of data for various independent variables.
+ The dataset contained a collection of various quantities obtained across
+ multiple observational units, in this case the 39 individual states, that
+ were assembled over even intervals in time and ordered chronologically.
+ So, for each observational unit 
+\begin_inset Formula $i$
+\end_inset
+
+ in Dataset B, we had a time series 
+\begin_inset Formula $\left\{ \left(x_{t},y_{t}\right):t=2015,\ldots,2021\right\} $
+\end_inset
+
+ with a total of 
+\begin_inset Formula $T=7$
+\end_inset
+
+ years where 
+\begin_inset Formula $x_{t}$
+\end_inset
+
+ was a 
+\begin_inset Formula $n\times1$
+\end_inset
+
+ feature vector and 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ was the response variable, and we had a total of 
+\begin_inset Formula $T=7$
+\end_inset
+
+ years.
+ Therefore, we could write the data for all our 
+\begin_inset Formula $m=39$
+\end_inset
+
+ observational units compactly in matrix form 
+\begin_inset Formula $\left\{ \left(\mathbf{X}^{i},\mathbf{y}^{i}\right):i=1,\ldots,39\right\} $
+\end_inset
+
+ where 
+\begin_inset Formula $\mathbf{X}^{i}$
+\end_inset
+
+ was a 
+\begin_inset Formula $T\times n$
+\end_inset
+
+, written as 
+\begin_inset Formula 
+\[
+\mathbf{X}^{i}=\left[\begin{array}{c}
+\left(x_{1}^{i}\right)^{\text{T}}\\
+\left(x_{2}^{i}\right)^{\text{T}}\\
+\vdots\\
+\left(x_{T}^{i}\right)^{\text{T}}
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula $x_{t}^{i}$
+\end_inset
+
+ was our standard 
+\begin_inset Formula $n\times1$
+\end_inset
+
+ feature vector, and 
+\begin_inset Formula $\mathbf{y}^{i}$
+\end_inset
+
+ was a 
+\begin_inset Formula $T\times1$
+\end_inset
+
+ vector of response variables.
+\end_layout
+
+\begin_layout Subsection
+Similarities and Differences
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Now, for both of the datasets, we collected data for 39 U.S.
+ states, or "units", over fixed periods of time.
+ In addition, the two datasets were "fixed and balanced" since each state
+ was tracked over the same number of time periods, and the same set of states
+ were tracked in each time period.
+ For each unit, we included a set of explanatory variables, which all changed
+ across time periods.
+ We wanted to make use of these measured features to help forecast the response
+ variable, which was the total number of bee colonies.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Yet, after aligning the set of states, there were two major differences
+ between Datasets A and B: Dataset A had a larger time horizon than Dataset
+ B, while Dataset B contained more explanatory variables.
+ To elaborate, the time frame of Dataset A consisted of 35 years, while
+ the time frame of Dataset B was only 7 years.
+ Dataset B, on the other hand, contained features that were not part of
+ Dataset A.
+ As mentioned previously, these additional features should have some impact
+ on honey bee colony numbers.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Above all, our goal was to choose and fit models that were appropriate for
+ whichever dataset was deployed.
+ In fact, the differences in structure between the two datasets influenced
+ the methodologies that we implemented.
+ The number of time periods and 
+\begin_inset Quotes eld
+\end_inset
+
+units
+\begin_inset Quotes erd
+\end_inset
+
+ in Dataset A were almost equal, and Dataset A had a longer time frame.
+ So, we experimented with time series methods that performed better under
+ these circumstances by fitting them on Dataset A.
+ With Dataset B, there was a small number of time periods, and the number
+ of 
+\begin_inset Quotes eld
+\end_inset
+
+units
+\begin_inset Quotes erd
+\end_inset
+
+ was much larger.
+ This meant that regression models more suited for panel datasets were fitted
+ using Dataset B.
+\end_layout
+
+\begin_layout Section
+Methodologies
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Prior to model fitting and evaluation, our group performed exploratory data
+ analysis on both datasets to help inform our decisions in regards to data
+ preparation, variable selection, and model building.
+ Then, using both datasets, we experimented with several models to see which
+ one produced the best predictive results.
+ In the subsequent subsections, we explain some of our notable findings
+ about the datasets, and we outline the different modeling approaches we
+ tested.
+\end_layout
+
+\begin_layout Subsection
+Exploratory Data Analysis - Dataset A
+\end_layout
+
+\begin_layout Subsubsection
+Visualizations
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+With a large number of states in our dataset, we wanted to priortize our
+ focus.
+ So, we decided to analyze the overall trend of the annual honey bee colony
+ numbers of the aggregated time series (
+\begin_inset Formula $y_{t}=y_{1,t}+\ldots+y_{39,t}$
+\end_inset
+
+), as opposed to the time series of each individual state.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Dataset A_Figure 1.png
+	width 12cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There was a substantial decrease in annual honey bee colony numbers for
+ the aggregated time series from 1987 to 2008, but since 2008, the total
+ numbers have slowly started to rise and recover.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+In addition, we wanted to compare the aggregated time series of the response
+ variable with the aggregated time series of the several climate and air
+ quality features.
+ As stated above, each of the 39 states had distinct time series for all
+ of the different factors.
+ Thus, to generate the aggregated time series for a given feature, we simply
+ took the average across the 39 states for each year.
+ Here is a raw comparison between the aggregated time series of the response
+ variable and the aggregated time series of the various features.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Dataset A_Figure 2.png
+	width 12cm
+	height 14cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We also formulated a normalized view to compare the response variable with
+ the feature variable.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Dataset A_Figure 3.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From the visualizations above, the most important features affecting the
+ aggregated time series of annual honey bee colony numbers (
+\begin_inset Formula $y_{t}=y_{1,t}+\ldots+y_{39,t}$
+\end_inset
+
+) seemed to be 
+\begin_inset Quotes eld
+\end_inset
+
+hazardous_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+days_pm2.5
+\begin_inset Quotes erd
+\end_inset
+
+, and 
+\begin_inset Quotes eld
+\end_inset
+
+days_ozone
+\begin_inset Quotes erd
+\end_inset
+
+.
+ These variables represented the average number of days in a given year
+ in which air quality was deemed 
+\begin_inset Quotes eld
+\end_inset
+
+hazardous
+\begin_inset Quotes erd
+\end_inset
+
+ and there were elevated levels of PM2.5 and ozone, respectively.
+ All of three of these variables should negatively impact honey bee mortality
+ rates, and we can see that while these variables had a positive trend,
+ the honey bee colony numbers had an overall negative trend.
+\end_layout
+
+\begin_layout Subsubsection
+Statistical Tests
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Still, we felt that it was important to conduct a few statistical tests
+ on the different time series before making any final decisions about feature
+ selection.
+ It is important to note that all of the statistical tests outlined below
+ were conducted on the aggregated time series of the response variable (
+\begin_inset Formula $y_{t}=y_{1,t}+\ldots+y_{39,t}$
+\end_inset
+
+) and the aggregated time series of the various climate and air quality
+ features.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+First, we performed the Granger causality test for different sets of variables.
+ When constructing models related to time series, like Vector Autoregression
+ (VAR), it was important that each of the time series in the system influenced
+ each other.
+ With the Granger causality test, we tried to determine which time series
+ had a p-value greater than 0.05.
+ This meant the series did not influence the system, so it could potentially
+ be removed from consideration when building our models.
+ Below are some of the notable results of the Granger causality tests
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+days_pm2.5
+\begin_inset Quotes erd
+\end_inset
+
+ had a p-value of 0.1576 > 0.05 for Granger cause of 
+\begin_inset Quotes eld
+\end_inset
+
+temperature_min
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+precipitation
+\begin_inset Quotes erd
+\end_inset
+
+ had a p-value of 0.1701 > 0.05 for Granger cause of 
+\begin_inset Quotes eld
+\end_inset
+
+temperature_max
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+hazardous_days
+\begin_inset Quotes erd
+\end_inset
+
+ had a p-value of 0.0744 > 0.05 for Granger cause of 
+\begin_inset Quotes eld
+\end_inset
+
+days_co
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus, we decided to remove the 
+\begin_inset Quotes eld
+\end_inset
+
+temperature_min
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+temperature_max
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+precipitation
+\begin_inset Quotes erd
+\end_inset
+
+, and 
+\begin_inset Quotes eld
+\end_inset
+
+days_co
+\begin_inset Quotes erd
+\end_inset
+
+ features from the dataset, and we retained the 
+\begin_inset Quotes eld
+\end_inset
+
+days_pm2.5
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+hazardous_days
+\begin_inset Quotes erd
+\end_inset
+
+ variables because they showed a high correlation with the honey bee colony
+ numbers.
+ After removing the series that failed the tests, we reran the Granger causality
+ tests again, and the remaining series all passed.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Next, we performed the Johansen cointegration test on all the series that
+ passed the Granger causality tests.
+ When two or more time series are cointegrated, it means they have a long
+ run statistically significant relationship.
+ So, the cointegration tests helped establish the presense of statistically
+ significant connections between two or more time series.
+ The table below contains the results of the tests
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Variable Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Test Statistic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Confidence Interval (95%)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Significance
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+colonies_inventory
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1245.13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+143.6691
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+unhealthy_days
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+898.63
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+111.7797
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+very_unhealthy_days
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+634.63
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+83.9383
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+hazardous_days
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+408.58
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+60.0627
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+days_no2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+206.57
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40.1749
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+days_ozone
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95.59
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24.2761
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+days_pm2.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.78
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.3212
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+days_pm10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.44
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.1296
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All series demonstrated significant relationships over time except 
+\begin_inset Quotes eld
+\end_inset
+
+days_pm10,
+\begin_inset Quotes erd
+\end_inset
+
+ so we decided to drop the feature.
+ Therefore, we were left with the following features: 
+\begin_inset Quotes eld
+\end_inset
+
+unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+very_unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+hazardous_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+days_no2
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+days_ozone
+\begin_inset Quotes erd
+\end_inset
+
+, and 
+\begin_inset Quotes eld
+\end_inset
+
+days_pm2.5
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Vector Autoregression (VAR) - Dataset A
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+With Dataset A, one approach was to use the aggregated time series of the
+ remaining features to help forecast the annual honey bee colony numbers
+ of the aggregated time series (
+\begin_inset Formula $y_{t}=y_{1,t}+\ldots+y_{39,t}$
+\end_inset
+
+).
+ Because we were dealing with multivariate time series, we decided to experiment
+ with the Vector Autoregression (VAR) model, which can be used when two
+ or more time series influence each other.
+ In the VAR model, each variable was modeled as a linear combination of
+ past values of itself and the past values of other variables in the system.
+ Since we had several time series that influenced each other, VAR was modeled
+ as a system of equations with one equation per variable or time series.
+ For example, the second order VAR(2) model for two variables includes up
+ to two lags for each variable, and it can be written as 
+\begin_inset Formula 
+\[
+\begin{array}{l}
+Y_{1,t}=\alpha_{1}+\beta_{11,1}Y_{1,t-1}+\beta_{12,1}Y_{2,t-1}+\beta_{11,2}Y_{1,t-2}+\beta_{12,2}Y_{2,t-2}+\epsilon_{1,t}\\
+Y_{2,t}=\alpha+\beta_{21,1}Y_{1,t-1}+\beta_{22,1}Y_{2,t-1}+\beta_{21,2}Y_{1,t-2}+\beta_{22,2}Y_{2,t-2}+\epsilon_{2,t}
+\end{array}
+\]
+
+\end_inset
+
+To select the order (P) of the VAR model, we iteratively fit several orders
+ of the VAR model, and we picked the order that produced a model with the
+ lowest Akaike Information Criterion (AIC) score.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Continuing on, the VAR model required the separate time series to be stationary,
+ meaning the statistical properties of each time series (e.g., mean, variance,
+ etc.) remained constant overtime.
+ So, we performed the Augmented Dickey-Fuller (ADF) test, one of the most
+ commonly used statistical tests when analyzing the stationarity of a time
+ series, on each of the remaining aggregated time series.
+ The first iteration of the ADF test showed that most of the time series
+ were not stationary.
+ However, all the time series were stationary after first-differencing.
+ So, after applying a first-difference adjustment to the remaining aggregated
+ time series, we were able to build the VAR model.
+\end_layout
+
+\begin_layout Subsection
+Long Short-Term Memory (LSTM) - Dataset A
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+The long short-term memory (LSTM) recurrent neural network was another methodolo
+gy that we tested using Dataset A.
+ Though, instead of aggregating the data across the 39 states and producing
+ a single aggregate forecast, like we did with VAR, we utilized the separate
+ data of all 39 states to produce individual forecasts of annual honey bee
+ colony numbers for each of them.
+ We chose LSTM because it is effective in learning the dependencies in a
+ sequence of predictions.
+ By using its memory cells to store relevant information, and gates that
+ address the continuous read, write, and reset of the memory cells, it can
+ handle both linear and nonlinear time series.
+ It also offered the capability to optimize internally using the 
+\begin_inset Quotes eld
+\end_inset
+
+Adam
+\begin_inset Quotes erd
+\end_inset
+
+ optimization algorithm for each of its parameters and equations.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+The Adam optimization algorithm is an extension to stochastic gradient descent
+ that has recently seen broader adoption for deep learning applications...
+\begin_inset Quotes erd
+\end_inset
+
+ [24].
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+In our implementation of LSTM, we decided to use the rectified linear unit
+ (ReLU) as our activation function, one of the most popular ones for neural
+ networks.
+ ReLU was chosen over Sigmoid and Tanh because those activation functions
+ can suffer saturation over time and impact the learning ability of the
+ neural network.
+ The ReLU function was applied to the output gate when the cell state (long-term
+ memory) and the hidden state (short-term memory) were combined to generate
+ the output.
+ ReLU transformed the weighted input to the output gate in order to learn
+ both linear and non-linear patterns in the data.
+ Then, it generated a postive and approximately linear output using 
+\begin_inset Formula $\text{relu}(x)=\max(0,x)$
+\end_inset
+
+.
+ Furthermore, we employed the 
+\begin_inset Quotes eld
+\end_inset
+
+Dropout
+\begin_inset Quotes erd
+\end_inset
+
+ probabilistic regularization method to reduce overfitting in the neural
+ network.
+ During each training sample, Dropout was fed a specific probabaility of
+ 20%, and it deactivated different inputs and recurrent connections to the
+ LSTM units when the weights were updated.
+ This allowed the LSTM units to generalize since they were less sensitive
+ to specific weights.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+To obtain the best fit model, mean squared error was chosen as the primary
+ loss function.
+ Also, the same features that were selected to build the VAR model were
+ used in our LSTM approach (i.e., 
+\begin_inset Quotes eld
+\end_inset
+
+unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+very_unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+hazardous_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+days_no2
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+days_ozone
+\begin_inset Quotes erd
+\end_inset
+
+, and 
+\begin_inset Quotes eld
+\end_inset
+
+days_pm2.5
+\begin_inset Quotes erd
+\end_inset
+
+).
+ With the use of its architecture, LSTM was able to account for the trends
+ and seasonalities that may have been present in the different time series
+ for the feature and response variables.
+ The retained data was structured in matrix format, 10 training epochs were
+ used to create and fit the model, and we used a lag of 3 years as the rolling
+ window to perform cross-validation.
+ Then, LSTM determined the model with the minimum mean squared error, and
+ it saved this 
+\begin_inset Quotes eld
+\end_inset
+
+best
+\begin_inset Quotes erd
+\end_inset
+
+ version with a call back function.
+ Finally, we treated each of the 39 states individually to obtain the best
+ LSTM model for each one.
+\end_layout
+
+\begin_layout Subsection
+Exploratory Data Analysis - Dataset B
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+In our project proposal, one of the methodolgies we proposed was the pooled
+ ordinary least squares (OLS) regression model, which was directly tied
+ to a linear panel data model 
+\begin_inset Formula 
+\[
+y_{t}=x_{t}\beta+\epsilon_{t}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $t=1,\ldots,T$
+\end_inset
+
+.
+ With the panel data setup described in the Section 3.2, we were able to
+ write the model for an observational unit 
+\begin_inset Formula $i$
+\end_inset
+
+ in matrix form
+\begin_inset Formula 
+\[
+\mathbf{y}^{i}=\mathbf{X}^{i}\beta+\mathbf{\epsilon}^{i}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\beta$
+\end_inset
+
+ was the 
+\begin_inset Formula $n\times1$
+\end_inset
+
+ population parameter that we want to estimate (same for all 
+\begin_inset Formula $t$
+\end_inset
+
+), and 
+\begin_inset Formula $\mathbf{\epsilon}^{i}$
+\end_inset
+
+ was the 
+\begin_inset Formula $T\times1$
+\end_inset
+
+ vector of error terms.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+However, with linear a model, we needed to make normality assumptions about
+ the response data we were trying to estimate.
+ If the response data was not close to fitting the normal distribution,
+ then the model could give biased results.
+ So, we first examined the histogram of the response variable:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Dataset B_Figure 1.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Clearly, the response variable was not normally distributed.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+So, we tried to alleviate this problem by trying a Box-Cox transformation.
+ A Box-Cox transformation is a logarithmic transformation that stretches
+ out the smaller range to enlarge its variability and shrinks the larger
+ range to reduce its variability 
+\begin_inset Formula 
+\[
+t(y)=\frac{\left(y^{\lambda}-1\right)}{\lambda}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $y$
+\end_inset
+
+ is the vector of responses and 
+\begin_inset Formula $t(y)$
+\end_inset
+
+ is the transformed vector.
+ The idea is to find the best 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ such that 
+\begin_inset Formula $t(y)$
+\end_inset
+
+ can become closer to the normal distribution.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+After applying a Box-Cox transformation on the response variable, we found
+ the optimal 
+\begin_inset Formula $\lambda^{*}\approx-0.1487$
+\end_inset
+
+.
+ Still, we needed to verify if the transformed data was approximately normally
+ distributed:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Dataset B_Figure 2.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The figure on the left is the plot of the KDE of the original data, and
+ the figure on the right is the plot of the KDE of the transformed data.
+ Unfortunately, the transformed data was not normally distributed, and this
+ notion was corroborated after examining the Q-Q plot:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Dataset B_Figure 3.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Therefore, we decided to change one of the original methodolgies we outlined
+ in our project proposal.
+ Since the response variable was not normally distributed, even after applying
+ a Box-Cox transformation, we felt it was best not to experiment with linear
+ panel data regression models, like pooled OLS.
+ Instead, we thought a non-linear pandel data regression model would be
+ more appropriate, and this is further discussed in the next subsection.
+\end_layout
+
+\begin_layout Subsection
+Mixed-Effects Random Forest (MERF) - Dataset B
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Dataset B was entirely comprised of longitudinal clusters since there were
+ multiple measures of each state over time.
+ So, each of the 39 states represented a separate cluster.
+ With this clustered data, we wanted to learn about the common effects across
+ all states, but also account for the unique characteristics of each one.
+ It was difficult to generate a separate model for each state because any
+ given model did not have enough training data.
+ If we created one global model to learn across all states, then it would
+ not be able to learn anything distinctive about particular states.
+ Also, one-hot encoding the states was an option, but it has been documented
+ that high cardinality categorical variables as features can lead to poor
+ model performance.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Thus, a mixed-effects model was chosen for Dataset B.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+In a mixed-effect model, each cluster gets a random effect that is learned
+ but drawn from a prior that is itself learned from the data
+\begin_inset Quotes erd
+\end_inset
+
+ [25].
+ Mixed-effects linear modeling is a classic technique, but as was shown
+ in the previous section, it was not a good idea to fit a linear model on
+ Dataset B.
+ Instead, we decided to combine random forests with linear random effects,
+ which is known as a mixed-effects random forest (MERF) method.
+ MERF is an extenstion of the random forest model to the case of clustered
+ data, and it is implemented using a standard random forest algorithm withing
+ the framework of the expectation-maximization (EM) algorithm [26].
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+The MERF method assumes a generative model of the form: 
+\begin_inset Formula 
+\[
+y=f(X)+b_{i}Z+\epsilon
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $y$
+\end_inset
+
+ is the response variable, 
+\begin_inset Formula $f(\cdot)$
+\end_inset
+
+ is a general non-linear function, 
+\begin_inset Formula $X$
+\end_inset
+
+ contains the 
+\begin_inset Formula $p$
+\end_inset
+
+ fixed-effect features, 
+\begin_inset Formula $Z$
+\end_inset
+
+ contains the 
+\begin_inset Formula $q$
+\end_inset
+
+ random-effect features, 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ is independent and identically distributed (i.i.d.) noise distributed as 
+\begin_inset Formula $N(0,\sigma_{e}^{2})$
+\end_inset
+
+, 
+\begin_inset Formula $i$
+\end_inset
+
+ is the cluster index (there are 39 clusters in Dataset B), and 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+ contains the random effect coefficients.
+ Note there are different coefficients per cluster 
+\begin_inset Formula $i$
+\end_inset
+
+, but they are assumed to be drawn from the same distribution 
+\begin_inset Formula $N(0,\sigma_{b})$
+\end_inset
+
+ [25].
+ Generally, 
+\begin_inset Formula $f(\cdot)$
+\end_inset
+
+ can be any non-linear regression model, but we focused on utilizing a random
+ forest, just as in the paper by Hajjem, Bellavance, & Larocque [26].
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+The MERF Python Package used the EM algorithm to fit four parameters: 
+\begin_inset Formula $f(\cdot)$
+\end_inset
+
+, 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+ for all 39 clusters, 
+\begin_inset Formula $\sigma_{b}$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma_{\epsilon}$
+\end_inset
+
+.
+ The generalized log-likelihood (GLL) was used as a measure of training
+ loss, and it was computed at every iteration.
+ As the GLL decreased, the fit improved, and once it flattened, the fit
+ converged.
+ Just like a classic random forest model, the MERF was fairly robust to
+ overfitting.
+ Finally, the fit MERF was used to predict data in the 39 clusters the model
+ saw in training: 
+\begin_inset Formula 
+\[
+\hat{y}=f(X)+b_{i}Z
+\]
+
+\end_inset
+
+where the prediction included the random effect correction.
+\end_layout
+
+\begin_layout Subsubsection
+Feature Selection
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Now, the air quality features retained for the VAR and LSTM models (i.e.,
+ 
+\begin_inset Quotes eld
+\end_inset
+
+unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+very_unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+hazardous_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+days_no2
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+days_ozone
+\begin_inset Quotes erd
+\end_inset
+
+, and 
+\begin_inset Quotes eld
+\end_inset
+
+days_pm2.5
+\begin_inset Quotes erd
+\end_inset
+
+) were also considered for the MERF model, while all the other air quality
+ and temperature features were disregarded.
+ Yet, we still needed to identify the most relevant features among the set
+ of variables that usually have an affect on honey bee mortality or colony
+ numbers.
+ Luckily, random forests are often used for feature selection for other
+ machine learning models.
+ The reason is because the tree-based strategies used by random forests
+ naturally ranks features by how well they improve the purity of the node.
+ Each tree of the random forest can calculate the importance of a feature
+ according to its ability to increase the pureness of the leaves.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+The higher the increment in leaves purity, the higher the importance of
+ the feature.
+ This is done for each tree, then is averaged among all the trees and, finally,
+ normalized to 1
+\begin_inset Quotes erd
+\end_inset
+
+ [27].
+ So, we first trained a standard random forest model using the large set
+ of features.
+ Then, we identified the most important features, created a new dataset
+ with the limited set of features, and trained the MERF model on the new
+ dataset.
+ Finally, because all features for each state changed over time, they were
+ used as both fixed-effects (
+\begin_inset Formula $X$
+\end_inset
+
+ matrix) and random-effects (
+\begin_inset Formula $Z$
+\end_inset
+
+ matrix) in the construction of the MERF model.
+\end_layout
+
+\begin_layout Section
+Evaluations and Final Results
+\end_layout
+
+\begin_layout Subsection
+Overview
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+To assess the performances of the different models we tested, it was important
+ to evaluate their accuracy using genuine forecasts.
+ We were unable to randomly assign data into training and test sets because
+ it made no sense to use future data to forecast values in the past.
+ We needed to consider the temporal dependencies between the observations
+ in our two datasets.
+ So, particular care was taken in splitting the data to prevent data leakage.
+ With both datasets, our data was organized chronologically, and then we
+ picked 2016 as the point in time to split our data.
+ All data prior to and including 2016 was always used to fit our models,
+ while data occurring after 2016 was withheld for validation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+More specifically, data from 2017 to 2021 was used for time series cross-validat
+ion (TSCV) in which cross-validation was performed on a rolling basis.
+ We primarily implemented the TSCV procedure outlined by Hyndman and Athanasopou
+los [28] involving one-step ahead forecasts.
+ The series of validation sets consisted of all observations from a single
+ year, while the corresponding training sets consisted of all observations
+ that occurred in the past.
+ As a result, no future observations were used in the construction of forecasts.
+ The diagram below illustrates the series of training and validation sets,
+ where the blue dots represent the observations in the training sets and
+ the orange dots represent the observations in the validation sets.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename TSCV Diagram.png
+	width 12cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For a given model, the first iteration of TSCV used training data all the
+ way up to 2016 to fit the model, a set of forecasted data points for 2017
+ was produced, and the accuracy of the forecasted data was measured against
+ the validation set of true 2017 data.
+ In subsequent iterations, the previous iteration's validation set was added
+ to the training data to fit the model, a set of forecasted data points
+ one year ahead was produced, and the accuracy of the forecasted data was
+ measured against the validation set of true data one year ahead.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Thus, our TSCV process consisted of 5 separate folds since data from every
+ individual year between 2017 to 2021 was used for validation.
+ The overall forecast accuracy of a specific model was computed by averaging
+ over the results generated from the 5 validation sets.
+ It is important to note that the 
+\begin_inset Quotes eld
+\end_inset
+
+one-step ahead
+\begin_inset Quotes erd
+\end_inset
+
+ TSCV procedure was executed for every model we considered.
+ This allowed us to reliably compare models that were built using either
+ of our two datasets.
+ Then, the model with the smallest average forecast accuracy measures was
+ chosen to be our best model.
+ Finally, we trained our chosen model using the entirety of its corresponding
+ dataset, and we estimated the true performance of this final model by evaluatin
+g its 
+\begin_inset Quotes eld
+\end_inset
+
+one-step ahead
+\begin_inset Quotes erd
+\end_inset
+
+ forecasts on unseen test data from 2022.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Now, when comparing the forecasting performance of different predictive
+ models, we wanted to pick the one with the smallest average forecast error,
+ as stated above.
+ According to Hyndman and Athanasopoulos [28], forecast error is the difference
+ between an observed value and its forecast, and it can be written as 
+\begin_inset Formula 
+\[
+e_{T+h}=y_{T+h}-\hat{y}_{T+h|T}
+\]
+
+\end_inset
+
+where the training data is given by 
+\begin_inset Formula $\left\{ y_{1},\ldots,y_{T}\right\} $
+\end_inset
+
+ and the test data is given by 
+\begin_inset Formula $\left\{ y_{T+1},y_{T+2},\ldots\right\} $
+\end_inset
+
+.
+ In fact, there were several different measures that we could have used
+ to evaluate forecast accuracy.
+ Since the forecast errors were on the same scale as the data (i.e., the total
+ number of honey bee colonies), it was permissible to use scale-dependent
+ accuracy measures.
+ The two popular versions we used were root mean squared error (RMSE)
+\begin_inset Formula 
+\[
+\text{RMSE}=\sqrt{\text{mean}\left(e_{t}^{2}\right)}
+\]
+
+\end_inset
+
+and mean absolute error (MAE) 
+\begin_inset Formula 
+\[
+\text{MAE}=\text{mean}\left(|e_{t}|\right)
+\]
+
+\end_inset
+
+“A forecast method that minimizes the MAE will lead to forecasts of the
+ median, while minimizing RMSE will lead to forecasts of the mean” [28].
+ We also needed an accuracy measure to compare the forecast performances
+ of models built using Dataset A versus Dataset B.
+ So, mean absolute percentage error (MAPE) was another accuracy measure
+ we employed: 
+\begin_inset Formula 
+\[
+\text{MAPE}=\text{mean}\left(|\nicefrac{100e_{t}}{y_{t}}|\right)
+\]
+
+\end_inset
+
+This is because “Percentage errors have the advantage of being unit-free,
+ and so are frequently used to compare forecast performances between datasets”
+ [28].
+ Therefore, the ideal 
+\begin_inset Quotes eld
+\end_inset
+
+best
+\begin_inset Quotes erd
+\end_inset
+
+ model should minimize the average RMSE, MAE, and MAPE measures computed
+ using our 5-fold TSCV procedure.
+\end_layout
+
+\begin_layout Subsection
+Modeling Results and Comparisons
+\end_layout
+
+\begin_layout Subsubsection
+Vector Autoregression (VAR) - Dataset A
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+First, we selected the order (P) of the VAR model.
+ The table below contains the results of the iterative analysis.
+ We used a lag of 
+\begin_inset Formula $P=2$
+\end_inset
+
+ to build the VAR model since it achieved the minimum AIC, FPE, and HQIC
+ measures.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FPE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HQIC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.85*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.681e+04
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.61
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11.12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13.81
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.712e+04
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11.92
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.419*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.46
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4494*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.971*
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Next, we performed our 5-fold TSCV procedure on the VAR(2) model.
+ As mentioned in section 4.2, we fitted the VAR(2) model using the set of
+ aggregated time series generated from Dataset A.
+ From 2017 to 2021, we compared the forecasted values produced by the VAR(2)
+ model (
+\begin_inset Formula $\hat{y}_{t}$
+\end_inset
+
+) against the actual honey bee colony numbers of the aggregated time series
+ (
+\begin_inset Formula $y_{t}=y_{1,t}+\ldots+y_{39,t}$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Results_Figure 1.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we calculated the RMSE, MAE, and MAPE of the VAR(2) model for each
+ validation year, and we computed the average of each accuracy measure across
+ the 5 years.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aggregated Level Accuracy Measures
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RMSE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAPE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2017
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2723.5532
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2723.5532
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.034127
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2018
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+830.2840
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+830.2840
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.166465
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2019
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+548.8404
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+548.8404
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.7739
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2020
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3099.7425
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3099.7425
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.5499
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2021
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1983.9329
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1983.9329
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.9175
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Avg.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1837.2706
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1837.2706
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2.6884
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Long Short-Term Memory (LSTM) - Dataset A
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+As mentioned in Section 4.3, we created an LSTM model for all 39 states.
+ So, we were able to plot the performance metrics as a function of the number
+ of training epochs for each state.
+ Here is an example of the output for one state:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Results_Figure 2.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We were also able to compare the forecasted values with the actual values
+ for each state: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Results_Figure 4.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For a given validation year during our TSCV procedure, we compared the forecaste
+d values with the actual values for all states and calculated the RMSE,
+ MAE, and MAPE, accordingly.
+ Then, we computed the average of each accuracy measure across the 5 years.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+State Level Accuracy Measures
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RMSE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAPE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2017
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10321.8832
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5093.3003
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1077
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2018
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16478.3582
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7318.5767
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1030
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2019
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14296.6625
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6911.1679
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1232
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2020
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11226.5056
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6624.0724
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1189
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2021
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9007.5936
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5441.5851
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1330
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Avg.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+12266.2006
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+6277.74048
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.11716
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Moreover, we needed to compare the results of the LSTM approach with the
+ results of the VAR(2) model.
+ So, for each validation year, we summed the forecasts of all 39 states
+ to produce a singular aggregated forecast.
+ Then, we compared these aggregated forecasts against the actual honey bee
+ colony numbers of the aggregated time series (
+\begin_inset Formula $y_{t}=y_{1,t}+\ldots+y_{39,t}$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Results_Figure 5.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we calculated the RMSE, MAE, and MAPE for each validation year,
+ and we computed the average of each accuracy measure across the 5 years.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aggregated Level Accuracy Measures
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RMSE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAPE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2017
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3354.9885
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3354.9885
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0497
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2018
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7066.3700
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7066.3700
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0993
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2019
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6722.8660
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6722.8660
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0948
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2020
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3929.7637
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3929.7637
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0577
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2021
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3701.9219
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3701.9219
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0544
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Avg\SpecialChar endofsentence
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+4955.18202
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+4955.18202
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.07118
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Mixed-Effects Random Forest - Dataset B
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+First, we needed to perform feature selection.
+ Before running the random forest model, we created a correlation coefficient
+ matrix to see how the features were related to the response variable and
+ one another.
+ Any correlation coefficient greater than or equal to 0.2 was displayed in
+ the heat map below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Results_Figure 6.png
+	width 12cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It seems as though 
+\begin_inset Quotes eld
+\end_inset
+
+colonies_loss_deadout_pct
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+pct_beekeepers_exclusive_state
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+pct_colonies_exclusive_state
+\begin_inset Quotes erd
+\end_inset
+
+, and 
+\begin_inset Quotes eld
+\end_inset
+
+unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+ were the features that had the strongest relationship with the response
+ variable.
+ With 
+\begin_inset Quotes eld
+\end_inset
+
+colonies_loss_deadout_pct
+\begin_inset Quotes erd
+\end_inset
+
+, the percentage of colonies affected by 
+\begin_inset Quotes eld
+\end_inset
+
+deadout loss
+\begin_inset Quotes erd
+\end_inset
+
+ was negatively correlated with honey bee colony numbers.
+ So, this feature and the response variable move in opposite directions,
+ which was expected.
+ Unfortunately, 
+\begin_inset Quotes eld
+\end_inset
+
+pct_beekeepers_exclusive_state
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+pct_colonies_exclusive_state
+\begin_inset Quotes erd
+\end_inset
+
+, and 
+\begin_inset Quotes eld
+\end_inset
+
+unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+ all had directions that were opposite of what was expected.
+ To elaborate, we would expect that the percentage of beekeepers and colonies
+ exclusive to a state would be positively correlated with honey bee colony
+ numbers, while 
+\begin_inset Quotes eld
+\end_inset
+
+unhealthy
+\begin_inset Quotes erd
+\end_inset
+
+ air quality days would be negatively correlated with honey bee colony numbers.
+ However, all the correlations are based on the entirety of Dataset B, meaning
+ all the states have been lumped together.
+ Ideally, the directional issues with these three features should be sorted
+ out by the MERF model when we account for the differences between states.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Next, we utilized the 
+\begin_inset Quotes eld
+\end_inset
+
+feature importance
+\begin_inset Quotes erd
+\end_inset
+
+ attribute of the random forest algorithm.
+ We trained a standard random forest model on years 2015 and 2016, to prevent
+ data leakage, using the large set of features and the default parameter
+ values.
+ Then, we created a bar chart to display the importance of the various features:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Results_Figure 7.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Based on the two sets of results that were displayed, we decided to retain
+ all of the features with an importance rating of 0.05 and above, along with
+ 
+\begin_inset Quotes eld
+\end_inset
+
+colonies_loss_deadout_pct
+\begin_inset Quotes erd
+\end_inset
+
+ based on its correlation with the response variable.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Now, the EM algorithm used to fit the MERF model often took quite a long
+ time to run, even with a 
+\begin_inset Quotes eld
+\end_inset
+
+stop early
+\begin_inset Quotes erd
+\end_inset
+
+ threshold and maximum limit on the number of iterations.
+ Also, due to the TSCV procedure, the MERF model needed to be fit 5 separate
+ times.
+ Consequently, it was difficult to perform hyper-parameter tuning because
+ of these computing constraints.
+ Hence, we only focused on tuning the number of trees for the random forest,
+ while the rest of the parameters were set to their default values.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Results_Figure 8.png
+	width 12cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After determining the optimal number of trees, we reran the TSCV procedure
+ with this value inputted as a set parameter in the MERF model.
+ For a given validation year during our TSCV procedure, we compared the
+ forecasted values with the actual values for all states and calculated
+ the RMSE, MAE, and MAPE, accordingly.
+ Then, we computed the average of each accuracy measure across the 5 years.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+State Level Accuracy Measures
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RMSE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAPE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2017
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18761.3905
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11936.5135
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.6788
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2018
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17746.5537
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9804.6502
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.3148
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2019
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14208.1014
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8493.3901
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.2868
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2020
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14163.7961
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8174.7696
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.2362
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2021
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16390.5067
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11765.5029
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.3447
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Avg.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+16254.0697
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+10034.9652 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.3723
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we compared the aggregated forecasts against the actual honey bee
+ colony numbers of the aggregated time series (
+\begin_inset Formula $y_{t}=y_{1,t}+\ldots+y_{39,t}$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aggregated Level Accuracy Measures
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RMSE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAPE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2017
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+133604.6305
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+133604.6305
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0507
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2018
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+157897.6551
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+157897.6551
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0569
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2019
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40970.4556
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40970.4556
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0148
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2020
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+93146.6446
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+93146.6446
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0351
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2021
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40908.5355
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40908.5355
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0154
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Avg\SpecialChar endofsentence
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+93305.58426
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+93305.58426
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.03458
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Estimated True Performance of Final Model
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Based on the results above, we chose the VAR(2) model to be the best one
+ out of the three.
+ It had the lowest average RMSE value, and its forested values actually
+ changed in a notable way from year to year, unlike the LSTM model.
+ Thus, we fit the VAR(2) model using data from all years, and we estimated
+ its true performance by evaluating its 
+\begin_inset Quotes eld
+\end_inset
+
+one-step ahead
+\begin_inset Quotes erd
+\end_inset
+
+ forecast on unseen test data from 2022.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actual
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forecast
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+RMSE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2022
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+72673.076923
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+63348.063277
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+9325.013646
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we created a forecast of annual honey bee colony numbers over the
+ next four years 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Results_Figure 9.png
+	width 12cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+For the aggregated data from Datase A, the VAR(2) model had an RMSE of 1837.2706,
+ and the LSTM model had an RMSE of 4955.18202, which meant the VAR(2) model
+ performed better at the aggregated level.
+ As a result, we proposed the VAR(2) model for predicting the annual honey
+ bee colony numbers for the U.S.
+ using the variables 
+\begin_inset Quotes eld
+\end_inset
+
+unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+very_unhealthy_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+hazardous_days
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+days_no2
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+days_ozone
+\begin_inset Quotes erd
+\end_inset
+
+, and 
+\begin_inset Quotes eld
+\end_inset
+
+days_pm2.5
+\begin_inset Quotes erd
+\end_inset
+
+.
+ From the explanatory data analyis, the most important series for forecasting
+ the colony inventories were the 
+\begin_inset Quotes eld
+\end_inset
+
+pm2.5
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+hazardous_days
+\begin_inset Quotes erd
+\end_inset
+
+ features.
+ Remember, PM2.5 is a measure of the tiny particles in the air that reduce
+ visibility when levels are elevated, and higher measures of PM2.5 does have
+ a notable impact on the honey bee population.
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+hazardous_days
+\begin_inset Quotes erd
+\end_inset
+
+ feature represented the number of days when the air had elevated pollutants
+ beyond the normal threshold.
+ Therefore, we can conclude that pollution does have a substantial impact
+ on honey bee colonies, specifically in the United States.
+ Based on the VAR(2) model forecasts, the honey bee colony population will
+ rise to approximately 70,000 in 2023, but it will decrease to approximately
+ 62,000 in 2025.
+ Therefore, we recommend businesses and government authorities to take the
+ appropriate measures if they wish to improve the honey bee population in
+ the future.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+With Dataset B, models such as VAR and LSTM were not suitable because the
+ dataset had very few years in the time series in order for these models
+ to learn successfully.
+ While we did try to fit the mixed-effects random forest on Dataset B, it
+ did not produce good forecasts, which was confirmed by its high RMSE values.
+ Hence, decided to discard Dataset B from our final considerations.
+\end_layout
+
+\begin_layout Section
+Work Breakdown
+\end_layout
+
+\begin_layout Standard
+All three team members contributed equally to this project.
+ We all collected and processed data, built and tested models, and wrote
+ various portions of the proposal and final report.
+\end_layout
+
+\end_body
+\end_document

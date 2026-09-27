@@ -1,0 +1,1064 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage[T1]{fontenc}
+\usepackage{pslatex}
+\usepackage{lastpage}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{{Page }\thepage{ of} \pageref{LastPage}}
+\rfoot{}
+\renewcommand{\headrulewidth}{0 pt}
+\setlength{\mathindent}{15mm}
+\end_preamble
+\use_default_options true
+\begin_modules
+enumitem
+theorems-ams-bytype
+theorems-ams-extended-bytype
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\headheight 0.5in
+\headsep 0.5in
+\footskip 0.5in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 1
+\math_indentation default
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Forecasting Annual U.S.
+ Honey Bee Colony Numbers Using Time Series Data
+\end_layout
+
+\begin_layout Author
+Team Members: Nathan Smooha, Elisabeth Gutierrez-Zaheer, Vincent Kofi Amedekah
+\end_layout
+
+\begin_layout Date
+November 9, 2022
+\end_layout
+
+\begin_layout Section
+Problem Statement
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+North America is home to nearly 4,500 species of bees [1].
+ Most species are solitary, but there are 49 known species of primitive
+ eusocial bumble bees in the United States.
+ 41 of these species are also found in Canada, and an additional 11 species
+ are found in Mexico.
+ In 1622, the highly eusocial western honey bee (“Apis mellifera”) was introduce
+d to North America from Europe and Africa [2], and it is the only species
+ of honey bee in North America.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Honey bees and other plant pollinators are vital to the health of agricultural
+ and plant ecosystems.
+ In fact, honey bees pollinate many of the fruits, vegetables, and nuts
+ the human population grows and consumes.
+ 75% to 80% of the world’s crops depend on pollinators like the honey bee
+ [3], and the need for honey bee pollination services has increased as the
+ demand for insect-pollinated food has risen.
+ Unfortunately, honey bees in the United States have a high mortality rate.
+ “…over the last decade, the U.S.
+ annual honey bee colony mortality rate has fluctuated between 30-45%, with
+ some beekeepers losing half or more of their colonies every year” [4].
+ Nonetheless, colony loss rates remain separate from honey bee population
+ decline.
+ The honey bee population (i.e., the overall number of colonies) has remained
+ steady over the years, but the beekeeping and agricultural industry do
+ face challenges [5].
+ There is still notable concern for the overall health of honey bee colonies,
+ which has led to the establishment of nonprofit organizations, such as
+ “The Bee Informed Partnership”, to help improve the health and long-term
+ sustainability of honey bees.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+In the United States, honey bees have such a high mortality rate due to
+ a complex suite of factors.
+ “Several critical factors threaten honey bees including poor nutrition
+ due to land use change, pesticide exposure, and introduced pests and diseases”
+ [4].
+ Varroa mites, which were introduced into the United States in the 1980s,
+ are one of the major external parasitic threats that continue to negatively
+ impact US honey bee colonies.
+ Elevated pathogens and pesticides also have substantial influence on honey
+ bees, with a wide array of pesticides being detected in wax and pollen
+ [4].
+ These external threats then make honey bee colonies more susceptible to
+ serious diseases, like “Colony Collapse Disorder” (CCD), which is a phenomenon
+ that occurs when thriving colonies empty within a few weeks because many
+ worker bees disappear [6].
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Moreover, climate change continues to have intensifying weight on honey
+ bees, especially through more extreme temperatures.
+ To elaborate, honey bees are active when it is 60.8 degrees Fahrenheit,
+ but they stop flying when the temperature falls below 50 degrees.
+ If the temperature drops below 28 degrees, then they die within one hour
+ [7].
+ In a survey performed from 2014 to 2019, the mortality rate for bees was
+ 53.5% during the winter [8].
+ While honey bees can survive in both high and low temperatures, they will
+ still die if there are prolonged instances of substantially high or low
+ temperatures because they suffer severe water loss and weakened muscles
+ to fly [7].
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Finally, air quality can damage honey bee colonies.
+ A 2020 study performed in India demonstrated that the number of bees visiting
+ flowers reduced significantly in areas with elevated levels of pollution,
+ while the opposite was true in areas where pollution was lower [9].
+ The study identified high and low pollution areas by investigating the
+ levels of particulate matter (PM), consisting of sulfate, nitrates, ammonia,
+ sodium chloride, black carbon, mineral dust, and water, in the air [9].
+ Note that elevated levels of PM2.5 means that the PM is small enough to
+ enter the systems of humans and animals [10].
+ Other environmental exposures such as ozone, nitrogen, and sulfur dioxide
+ can also have serious outcomes on honey bees, and elevated levels of pollutants
+ can cause bees to die.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Consequently, such highly volatile dynamics in honey bee mortality can lead
+ to unpredictable outcomes for our ecosystem and agricultural industry.
+ Colony loss directly affects the honey bee population, and a potential
+ decrease in the number of honey bee colonies could negatively impact crop
+ production yields.
+ While beekeepers can help to create more colonies, replacing colonies still
+ comes at a great cost, and it should not be underappreciated [4].
+ Over the last 20 years, annual loss rates remain high, so beekeepers are
+ consistently under pressure to offset these losses by creating new colonies
+ [11].
+ Instead of reactionary decision making based on constant fluctuations in
+ the honey bee population, it could help beekeepers, farmers, etc.
+ to have insight into how many colonies they can expect to have in the future.
+ This would enable the appropriate policy makers to improve assessments
+ of local and regional habitat suitability and ultimately make more informed
+ decisions.
+ If these groups had advanced knowledge of substantial colony loss in the
+ future, then perhaps they could take steps in the present to mitigate some
+ of the problems through targeted initiatives.
+ Therefore, the goal of this project is to utilize past data to help build
+ a machine learning model that forecasts annual US honey bee colony numbers.
+\end_layout
+
+\begin_layout Section
+Literature Survey
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+As explained, the topic of honey bee population loss is an important one.
+ Most of the research being done is focused on analyzing data collected
+ through surveys.
+ The “Bee Informed Partnership” created the “Colony Loss and Management
+ Survey,” which monitors managed honey bee colony loss rates and identifies
+ risk factors and protective measures [12].
+ Furthermore, the “National Honey Bee Survey” is a comprehensive examination
+ of colony health throughout the United States, and it helps document honey
+ bee diseases, pests, and pathogens [13].
+ The data collected through these surveys is valuable to both beekeepers
+ and researchers.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+For instance, a review published in EcoHealth [14] utilized data collected
+ through surveys from individual beekeepers to study the drivers of decline
+ in bee colonies.
+ The study was conducted by identifying socioeconomic, political, and environmen
+tal factors affecting the bee industry, and various models were run to analyze
+ bee colony numbers.
+ It was found that how the bees are managed, along with pathogens and pesticides
+, were significant contributors to the decline of the bee colonies.
+ The approach used in the study can be improved by adding more datasets
+ and evaluating data across the entire United States to get a more extensive
+ view of the factors impacting honey bee colonies, such as weather and air
+ quality, which our project intends to do.
+ Most importantly, our primary goal is to create a machine learning model
+ to forecast future honey bee colony numbers.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+However, there are other studies that have taken a more theoretical approach.
+ Chen et al.
+ [15] formulated theoretical mathematical equations to study the impact
+ on the number of honeybee colonies, and they considered several factors
+ as variables, such as diseases, pesticides, and food availability.
+ Though, the equations were only based on theory, and they were not validated
+ to for practical use.
+ The authors did state that the use of machine learning to validate the
+ theoretical models was necessary since their approach lacked the use of
+ real data.
+ Our project will use machine learning modeling to validate real historical
+ time series data, and we’ll consider various factors when building our
+ machine learning models.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Regardless, there are still only a few studies related to forecasting honey
+ bee activity or colony numbers.
+ Ngo et al.
+ [16] used temporal convolutional neural networks to forecast the population
+ daily loss rate of honey bee colonies, and they determined warning levels
+ based on the predictions.
+ Yet, their project was narrowly focused on individual honey bee colonies
+ since they collected experimental data from a honey bee farm located in
+ Taiwan to help construct their algorithm.
+ Moreover, Rumkee et al.
+ [17] simulated the effects of pesticides on different honey bee life stages
+ using the BEEHAVE model.
+ “The BEEHAVE model simulates the development of a honey bee colony and
+ its foraging of nectar and pollen in different landscapes” [18].
+ Matthias et al.
+ [19] was another study that utilized the BEEHAVE system.
+ The authors found the increase in failure of bee colonies were attributed
+ to pathogens, forage availability, and potentially pesticides.
+ To sum up, all these initiatives focused on how individual honey bee colonies
+ responded to external stressors, specifically pesticide exposure and pathogens.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Our study, on the other hand, will have a broader focus than the research
+ projects outlined in the previous paragraph since we will try to predict
+ the annual honey bee population for individual states and the United States
+ as a whole.
+ In addition, we will try to consider several factors that are correlated
+ with increased honey bee mortality, including pesticides, diseases, pests,
+ temperature, precipitation, and air quality.
+ The aim of this project is to account for the factors that have a potential
+ impact on honey bees to make informed predictions.
+ Finally, we will experiment with different machine learning models to see
+ which approach produces the best forecasts of future honey bee colony numbers.
+ predict the future bee hive colony numbers.
+\end_layout
+
+\begin_layout Section
+Data Sources
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+For our project, we produced two separate data sources to experiment with
+ different kinds of methodologies because we want to examine which ones
+ produce the best predictive results for future honey bee colony numbers.
+\end_layout
+
+\begin_layout Subsection
+Dataset A
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+To easily distinguish between the two datasets we are considering, we will
+ often refer to the dataset described in this section as “Dataset A” going
+ forward.
+ Dataset A is a hierarchical time series that has continuous annual data
+ on honey bee populations, which we are treating as our response variable,
+ for 39 states and “other states” (an aggregation of all other states) from
+ 1987 to 2021.
+ The data was retrieved from the National Agricultural Statistics Service
+ (NASS), which is part of the United States Department of Agriculture (USDA)
+ [20].
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Important to note, this was the most complete and expansive dataset on annual
+ honey bee populations that could be obtained from the NASS.
+ The NASS creates its datasets through a wide-ranging Census conducted every
+ 5 years, or through more constrained quarterly or annual surveys.
+ Our group decided to focus on the data produced from the annual surveys.
+ Unfortunately, due to the limitations of surveys, there were some states,
+ such as Connecticut, that did not have observations for the entire time
+ horizon.
+ So, any states that did not have continuous observations from 1987 to 2021
+ were grouped together in the already existent series “other states.” This
+ helped to create 40 unique time series that all had continuous data for
+ the entire time horizon.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+With this setup, Dataset A can be categorized as a hierarchal time series.
+ The total honey bee population in the United States represents the “top”
+ of the hierarchy, or the most aggregate level of data.
+ So, the 
+\begin_inset Formula $t$
+\end_inset
+
+-th observation for the United States series is denoted by 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ for 
+\begin_inset Formula $t=1987,\ldots,2021$
+\end_inset
+
+.
+ This top-level series can then be disaggregated into 40 separate series,
+ one for each of the 39 states and 
+\begin_inset Quotes eld
+\end_inset
+
+other states
+\begin_inset Quotes erd
+\end_inset
+
+, where 
+\begin_inset Formula $y_{j,t}$
+\end_inset
+
+ denotes the 
+\begin_inset Formula $t$
+\end_inset
+
+-th observation corresponding to the 
+\begin_inset Formula $j$
+\end_inset
+
+-th series for 
+\begin_inset Formula $j=1,\ldots,40$
+\end_inset
+
+.
+ For any time 
+\begin_inset Formula $t$
+\end_inset
+
+, there observations for all the 
+\begin_inset Formula $j$
+\end_inset
+
+ series will sum to the observation for the United states as a whole, i.e.,
+ 
+\begin_inset Formula 
+\[
+y_{t}=y_{1,t}+\ldots+y_{40,t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Nonetheless, we were able to generate annual data pertaining to climate
+ and air quality that can be combined with Dataset A to identify the correlation
+s between these features and the honey bee populations.
+ This could potentially improve the predictions of our models that utilize
+ Dataset A.
+ First, the climate data was retrieved from the National Centers for Environment
+al Information (NCEI) [21].
+ The dataset consists of monthly weather measurements at the state level
+ from 1895 to the present.
+ For our project, the maximum temperature, minimum temperature, and precipitatio
+n data were retained.
+ During the preprocessing, the monthly data was rolled up to the annual
+ level for each state by taking the monthly maximum and minimum temperatures,
+ respectively, over the 12-month readings, while the annual precipitation
+ was calculated by adding the 12-month readings.
+ Next, the air quality data was obtained from the United States Environmental
+ Protection Agency (EPA) [22].
+ The annual summary data per county was extracted for the years of 1987
+ to 2022, and the data was preprocessed to merge all the various data files
+ sets into one dataset.
+ For each feature column on air quality, the data was grouped into states
+ and counties, and the aggregate mean for 50 states was calculated using
+ the appropriate county values.
+\end_layout
+
+\begin_layout Subsection
+Dataset B
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Going forward, we will often refer to the dataset described in this section
+ as “Dataset B.” This dataset contains annual honey bee data for 45 states
+ and “other states” (an aggregation of data from Alaska, Delaware, Nevada,
+ New Hampshire, and Rhode Island) from 2015 to 2021.
+ Much of the dataset was obtained from NASS quarterly survey data [20].
+ It not only includes data on honey bee populations, but it also has data
+ on factors that impact honey bee mortality, such as colony renovation,
+ diseases, pests, pesticides, and “other causes”.
+ The quarterly data for each state was aggregated to the annual level by
+ taking the average of the four quarters for each factor.
+ We also obtained annual data on the percentage of beekeepers and honey
+ bee colonies exclusive to each state, along with a weighted average of
+ total colony loss, from the “Bee Informed Partnership” [23].
+ All these additional features have been combined with the annual data on
+ air quality and climate to produce an even larger set of independent variables.
+ Finally, the original survey data used to create Dataset A did contain
+ annual data on honey bee populations from 2015 to 2021 for the 45 states
+ represented in Dataset B.
+ Thus, we simply reused this data to represent our response variable in
+ Dataset B.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Now, the structure of Dataset B is more in line with longitudinal or panel
+ data.
+ It not only has data for our response variable, but it also contains data
+ for various independent variables.
+ Longitudinal or panel data contains a collection of various quantities
+ obtained across multiple observational units, in this case individual states,
+ that are assembled over even intervals in time and ordered chronologically.
+ So, for each observational unit 
+\begin_inset Formula $i$
+\end_inset
+
+ in Dataset B, we have a time series 
+\begin_inset Formula $\left\{ \left(x_{t},y_{t}\right):t=1,\ldots,7\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $x_{t}$
+\end_inset
+
+ is a 
+\begin_inset Formula $n\times1$
+\end_inset
+
+ feature vector, 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ is the response variable, and we have a total of 
+\begin_inset Formula $T=7$
+\end_inset
+
+ years (i.e., 2015 to 2021).
+ Thus, we can write the data for all our 
+\begin_inset Formula $m=46$
+\end_inset
+
+ observational units compactly in matrix form.
+ We have 
+\begin_inset Formula $\left\{ \left(\mathbf{X}^{i},\mathbf{y}^{i}\right):i=1,\ldots,46\right\} $
+\end_inset
+
+ where 
+\begin_inset Formula $\mathbf{X}^{i}$
+\end_inset
+
+ is a 
+\begin_inset Formula $T\times n$
+\end_inset
+
+, written as 
+\begin_inset Formula 
+\[
+\mathbf{X}^{i}=\left[\begin{array}{c}
+\left(x_{1}^{i}\right)^{\text{T}}\\
+\left(x_{2}^{i}\right)^{\text{T}}\\
+\vdots\\
+\left(x_{T}^{i}\right)^{\text{T}}
+\end{array}\right]
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $x_{t}^{i}$
+\end_inset
+
+ is our standard 
+\begin_inset Formula $n\times1$
+\end_inset
+
+ feature vector, and 
+\begin_inset Formula $\mathbf{y}^{i}$
+\end_inset
+
+ a 
+\begin_inset Formula $T\times1$
+\end_inset
+
+ vector of response variables.
+\end_layout
+
+\begin_layout Section
+Methodologies
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Currently, our group is still researching various machine learning algorithms
+ to potentially experiment and evaluate.
+ Yet, we have identified a few promising modeling approaches that we do
+ intend to formulate and test.
+ 
+\end_layout
+
+\begin_layout Subsection
+Vector Autoregression (VAR)
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+One approach for forecasting multivariate time series is the Vector Autoregressi
+on model which can be used when two or more time series influence each other.
+ In our project, there are multiple time series datasets that are going
+ to be used to predict the annual bee colony numbers, so a VAR model can
+ be used as one of the methods in predicting the bee colony numbers.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+To use the VAR model, we will test for causation using Granger’s Causality
+ Test to ascertain the fact the system of series influences each other.
+ Given that we have multiple time series we can test for cointegration which
+ will reveal if they have long run statistically significant relationship.
+ We will employ the Johanssen test for cointegration before running the
+ VAR model.
+ The VAR model also requires the time series to be stationary so the Augmented
+ Dickey-Fuller Test will be used to test stationarity.
+ The data will then be split into Training and Test set.
+ After evaluating the model performance, the bee colony numbers for future
+ years will be predicted using the VAR model.
+\end_layout
+
+\begin_layout Subsection
+Pooled Oridinary Least Squares (OLS) Regression Model
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+For Dataset B, a pooled OLS regression model can be tested.
+ It can be described as a simple OLS model that is performed on panel data.
+ It ignores time and individual characteristics, and it focuses only on
+ the dependencies between the individual units.
+ We assume a fixed number of time periods 
+\begin_inset Formula $T$
+\end_inset
+
+, but the number of observational units 
+\begin_inset Formula $m$
+\end_inset
+
+ can grow larger.
+ So, we want many observational units (i.e., states), and a few time periods
+ per unit, which Dataset B satisfies.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+A linear panel data model for each observational unit 
+\begin_inset Formula $i$
+\end_inset
+
+ in the population is 
+\begin_inset Formula 
+\[
+y_{t}=x_{t}\beta+\epsilon_{t}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $t=1,\ldots,T$
+\end_inset
+
+.
+ With the panel data setup described in the Section 3.2, we can write the
+ model for an observational unit 
+\begin_inset Formula $i$
+\end_inset
+
+ in matrix form
+\begin_inset Formula 
+\[
+\mathbf{y}^{i}=\mathbf{X}^{i}\beta+\mathbf{\epsilon}^{i}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\beta$
+\end_inset
+
+ is the 
+\begin_inset Formula $n\times1$
+\end_inset
+
+ population parameter that we want to estimate, and 
+\begin_inset Formula $\mathbf{\epsilon}^{i}$
+\end_inset
+
+ is the 
+\begin_inset Formula $T\times1$
+\end_inset
+
+ vector of error terms.
+ Note that we have the same 
+\begin_inset Formula $\beta$
+\end_inset
+
+ for all 
+\begin_inset Formula $t$
+\end_inset
+
+, which is not often restrictive because 
+\begin_inset Formula $x_{t}^{i}$
+\end_inset
+
+ can be very general.
+ The pooled OLS estimator looks just like the single-equations OLS estimator,
+ but 
+\begin_inset Formula $\mathbf{X}^{i}$
+\end_inset
+
+ is a matrix and 
+\begin_inset Formula $\mathbf{y}^{i}$
+\end_inset
+
+ is a vector: 
+\begin_inset Formula 
+\[
+\begin{array}{lcl}
+\hat{\beta} & = & \left(\frac{1}{m}{\displaystyle \sum_{i=1}^{m}}\left(\mathbf{X}^{i}\right)^{\text{T}}\mathbf{X}^{i}\right)^{-1}\left(\frac{1}{m}{\displaystyle \sum_{i=1}^{m}}\left(\mathbf{X}^{i}\right)^{\text{T}}\mathbf{y}^{i}\right)\\
+ & = & \left({\displaystyle \sum_{i=1}^{m}}{\displaystyle \sum_{t=1}^{T}}\left(x_{t}^{i}\right)^{\text{T}}\left(x_{t}^{i}\right)\right)^{-1}\left({\displaystyle \sum_{i=1}^{m}}{\displaystyle \sum_{t=1}^{T}}\left(x_{t}^{i}\right)^{\text{T}}y_{t}^{i}\right)
+\end{array}
+\]
+
+\end_inset
+
+A pooled OLS regression model is often a good starting point and reference
+ model for other models related to panel data, such as the 
+\begin_inset Quotes eld
+\end_inset
+
+Fixed Effects Regression Model
+\begin_inset Quotes erd
+\end_inset
+
+ or the 
+\begin_inset Quotes eld
+\end_inset
+
+Random Effects Regression Model
+\begin_inset Quotes erd
+\end_inset
+
+ [24].
+\end_layout
+
+\begin_layout Subsection
+Long Short-Term Memory (LSTM)
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+A time series modeling is considered a sequence-to-sequence prediction model
+ to forecast the future response based on historical data.
+ With the use of real data collected for this project consisting of a time
+ series with multiple features, modeling can be used to identify correlations
+ with various features that impact the outcome of the number of bee colonies
+ for each state in the US.
+ One type of modeling considered for this project is the long short-term
+ memory (LSTM) recurrent neural network.
+ The model can be trained with historical data, validated, and tested to
+ forecast the number of bee colonies in the future using various dependent
+ features.
+ In addition, it offers the capability to optimize internally using the
+ gradient descent for each of its parameters and equations using the loss
+ function of mean squared error to obtain the best fit model and obtain
+ better results.
+ Trends, and seasonality will impact the results for a time series, and
+ they can be detected prior to the model and ensure a stationary time series.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+LSTM depends on the input sequence (order of observations) that is important
+ for prediction.
+ It processes the information (data) sequentially passing on information
+ as it propagates forward in the neural network.
+ The LSTM network can learn a mapping function for the inputs over time
+ to an output.
+ The internal memory can condition the output on the recent context in the
+ input sequence along with the previous state [25].
+ It offers the capability to learn long term correlations in a sequence
+ and can be modeled by multiple parallel input series separately with varied
+ length of input sequence to produce a variable length of output sequence
+ [25].
+ LSTM can remember information for longer periods of time (resolving the
+ issue of short-term memory with recurrent neural networks) and it resolves
+ the back propagation problem of the gradient vanishing when assigning weights
+ to the neural networks.
+ LSTM uses gates and cell states which are capable of learning long-term
+ dependencies to regulate the flow of information.
+ The cells make decisions on how much, when to store and release information
+ to make accurate predictions.
+ 
+\end_layout
+
+\begin_layout Section
+Evalutions and Final Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+To assess the performances of our models, it is important to evaluate a
+ model’s forecast accuracy using genuine forecasts.
+ We are unable to randomly assign data into training and test sets because
+ it makes no sense to use future data to forecast values in the past.
+ With time series data, we must consider the temporal dependencies between
+ the observations in our two datasets.
+ So, particular care must be taken in splitting the data to prevent data
+ leakage.
+ This means our data must be organized chronologically, and then we pick
+ a point in time to split our data.
+ All data prior to and including this point in time will be used to fit
+ our models, while data occurring after will be withheld for testing.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Furthermore, when comparing different forecasting models, we want to pick
+ the model with the smallest forecast error, which is the difference between
+ an observed value and its forecast.
+ According to Hyndman and Athanasopoulos [26], forecast error can be written
+ as 
+\begin_inset Formula 
+\[
+e_{T+h}=y_{T+h}-\hat{y}_{T+h|T}
+\]
+
+\end_inset
+
+where the training data is given by 
+\begin_inset Formula $\left\{ y_{1},\ldots,y_{T}\right\} $
+\end_inset
+
+ and the test data is given by 
+\begin_inset Formula $\left\{ y_{T+1},y_{T+2},\ldots\right\} $
+\end_inset
+
+.
+ Also, there are several different measures tha can be used to evaluate
+ forecast accuracy.
+ Since the forecast errors will be on the same scale of data (i.e., the total
+ number of honey bee colonies), then it is permissible to use accuracy measures
+ that are scale dependent.
+ Two popular versions include root mean squared error (RMSE)
+\begin_inset Formula 
+\[
+\text{RMSE}=\sqrt{\text{mean}\left(e_{t}^{2}\right)}
+\]
+
+\end_inset
+
+and mean absolute error (MAE) 
+\begin_inset Formula 
+\[
+\text{MAE}=\text{mean}\left(|e_{t}|\right)
+\]
+
+\end_inset
+
+“A forecast method that minimizes the MAE will lead to forecasts of the
+ media, while minimizing RMSE will lead to forecasts of the mean” [26].
+ We also need to an accuracy measure to compare the forecast performances
+ between datasets A and B.
+ So, mean absolute percentage error (MAPE) is another accuracy measure we
+ will consider: 
+\begin_inset Formula 
+\[
+\text{MAPE}=\text{mean}\left(|\nicefrac{100e_{t}}{y_{t}}|\right)
+\]
+
+\end_inset
+
+This is because “Percentage errors have the advantage of being unit-free,
+ and so are frequently used to compare forecast performances between datasets”
+ [26].
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Moreover, a more sophisticated method than simply splitting our data into
+ training and test sets is known as time series cross-validation (TSCV).
+ This involves performing cross-validation on a rolling basis.
+ For each iteration, we start with a subset of training data, forecast for
+ a small subset of future data, and then check the accuracy of the forecasted
+ data points.
+ In the next iteration, we expand the training dataset by adding the data
+ points we forecasted on from the previous iteration, and then another small
+ subset of future data points is forecasted and evaluated.
+ This process continues for the entire dataset.
+ However, a fair portion of the earliest observations will always be used
+ for training since it is not possible to obtain reliable forecasts on small
+ training sets.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 0.25in
+\end_inset
+
+Continuing, we will primarily utilize the TSCV procedure outlined by Hyndman
+ and Athanasopoulos [26] involving one-step forecasts.
+ The series of test sets will consist of all the observations from a single
+ year.
+ The corresponding training sets will consist of all the observations that
+ occurred prior to the observations that form the given test set.
+ This means that no future observations will be used in constructing the
+ forecasts, which is exactly what we want to implement.
+ The diagram below illustrates the series of training and test sets, where
+ the blue observations form the training sets, and the orange observations
+ form the test sets.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename TSCV Diagram.png
+	width 10cm
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, the forecast accuracy is computed by averaging over the test sets.
+ To choose the best forecasting model, we will find the model with the smallest
+ forecast accuracy measures, such as RMSE, which will be computed using
+ TSCV.
+\end_layout
+
+\begin_layout Section
+Potential Challenges
+\end_layout
+
+\begin_layout Itemize
+Should we build models using both datasets A and B, or should we only focus
+ on utilizing one of the datasets? 
+\end_layout
+
+\begin_layout Itemize
+If we do decide to utilize both datasets, then, in practice, is it even
+ permitted, to compare models that are built using different datasets? If
+ so, then what is the best way to compare the models that are built using
+ different datasets? 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If we are truly going to compare models that are built using datasets A
+ and B, respectively, then we need to pick a common starting point that
+ will be our first “test set” when performing time series cross-validation
+\end_layout
+
+\begin_layout Itemize
+Datasets A and B also have different sets of states represented.
+ Dataset B has six additional states compared to Dataset A (i.e., Connecticut,
+ Maryland, Massachusetts, Oklahoma, New Mexico, and South Carolina).
+ So, do we eliminate these states in Dataset B, or is it possible to split
+ out the “other states” observation in Dataset A to build out observations
+ for these six states?
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+With Dataset A, are we going to build time series models that exclusively
+ focus on our response variable, or are we going to build models that also
+ utilize explanatory features, such as air quality, temperature, and precipitati
+on?
+\end_layout
+
+\end_body
+\end_document
